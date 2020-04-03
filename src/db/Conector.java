@@ -2,35 +2,35 @@ package db;
 
 import java.sql.*;
 
-public class Conector {
+
+    /*
+    Taras Boreyko 2017284
+
+    This is the database connector which I decided to do like enum singleton
+    */
+
+public enum Conector {
+    instance;
 
 
-    private String db = "jdbc:mysql://apontejaj.com:3306/world";
-    private String un = "cctstudent";
-    private String pw = "Pass1234!";
 
-    public Conector() {
+    private String server = "jdbc:mysql://apontejaj.com:3306/world";
+    private String user = "cctstudent";
+    private String pass = "Pass1234!";
+    private Connection conn;
+    private Statement stmt;
+    private ResultSet rs;
+
+    private Conector() {
 
         try{
 
             // Get a connection to the database
-            Connection conn = DriverManager.getConnection( db, un, pw ) ;
+            conn = DriverManager.getConnection(server, user, pass) ;
 
             // Get a statement from the connection
-            Statement stmt = conn.createStatement() ;
+            stmt = conn.createStatement() ;
 
-            // Execute the query
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM country" ) ;
-
-            // Loop through the result set
-            while( rs.next() )
-                System.out.println( rs.getString(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3)
-                        + "\t" + rs.getString(4) + "\t" + rs.getString(5)) ;
-
-            // Close the result set, statement and the connection
-            rs.close() ;
-            stmt.close() ;
-            conn.close() ;
         }
         catch( SQLException se ){
             System.out.println( "SQL Exception:" ) ;
@@ -48,4 +48,41 @@ public class Conector {
             System.out.println( e ) ;
         }
     }
+
+    public boolean insertQuery(String query){
+        try{
+            stmt.executeQuery(query);
+            return true;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public ResultSet selectQuery(String query){
+        try {
+            rs = stmt.executeQuery(query);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return rs;
+    }
+
+    public static Conector getInstance(){
+        return instance;
+    }
+
+
+    //Close database method
+    public void closeDB(){
+        try {
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

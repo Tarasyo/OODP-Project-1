@@ -5,6 +5,7 @@ import java.sql.*;
 
     /*
     This is the database connector which I decided to do like enum singleton
+    Check README file for more information why I used Singleton ENUM
     */
 
 public enum Conector {
@@ -50,7 +51,7 @@ public enum Conector {
             @param String with a query
             @return boolean with true if was successful insert
          */
-    public boolean insertQuery(String query){
+    public boolean insert(String query){
         try{
             stmt.executeQuery(query);
             return true;
@@ -64,7 +65,7 @@ public enum Conector {
             @param String of SELECT query
             @return result of the query from DB
          */
-    public ResultSet selectQuery(String query){
+    public ResultSet select(String query){
         try {
             rs = stmt.executeQuery(query);
         }catch (SQLException e){

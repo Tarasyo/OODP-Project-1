@@ -4,8 +4,6 @@ import java.sql.*;
 
 
     /*
-    Taras Boreyko 2017284
-
     This is the database connector which I decided to do like enum singleton
     */
 
@@ -48,7 +46,10 @@ public enum Conector {
             System.out.println( e ) ;
         }
     }
-
+        /*Method for insert to the database
+            @param String with a query
+            @return boolean with true if was successful insert
+         */
     public boolean insertQuery(String query){
         try{
             stmt.executeQuery(query);
@@ -59,6 +60,10 @@ public enum Conector {
         }
     }
 
+        /*Method returns result from database of passed query that should be a SELECT statement
+            @param String of SELECT query
+            @return result of the query from DB
+         */
     public ResultSet selectQuery(String query){
         try {
             rs = stmt.executeQuery(query);
@@ -68,6 +73,9 @@ public enum Conector {
         return rs;
     }
 
+    /*
+    @return instance of the database connector
+     */
     public static Conector getInstance(){
         return instance;
     }

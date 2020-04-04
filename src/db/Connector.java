@@ -8,7 +8,7 @@ import java.sql.*;
     Check README file for more information why I used Singleton ENUM
     */
 
-public enum Conector {
+public enum Connector {
     instance;
 
 
@@ -20,7 +20,7 @@ public enum Conector {
     private Statement stmt;
     private ResultSet rs;
 
-    private Conector() {
+    private Connector() {
 
         try{
 
@@ -51,14 +51,12 @@ public enum Conector {
             @param String with a query
             @return boolean with true if was successful insert
          */
-
-
     public boolean insert(String query){
         try{
             stmt.executeQuery(query);
             return true;
         }catch (SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -71,7 +69,7 @@ public enum Conector {
         try {
             rs = stmt.executeQuery(query);
         }catch (SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return rs;
     }
@@ -79,7 +77,7 @@ public enum Conector {
     /*
     @return instance of the database connector
      */
-    public static Conector getInstance(){
+    public static Connector getInstance(){
         return instance;
     }
 

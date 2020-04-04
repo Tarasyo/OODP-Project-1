@@ -1,10 +1,4 @@
-
-
-
-
-
-import db.Conector;
-
+import db.Connector;
 
 public class Main {
 

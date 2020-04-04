@@ -51,6 +51,8 @@ public enum Conector {
             @param String with a query
             @return boolean with true if was successful insert
          */
+
+
     public boolean insert(String query){
         try{
             stmt.executeQuery(query);

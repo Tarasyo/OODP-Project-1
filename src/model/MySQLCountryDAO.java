@@ -74,21 +74,21 @@ public class MySQLCountryDAO implements CountryDAO {
 
         //initialise variables with representative attribute from table
         try {
-                rs.next();
-                this.id = rs.getString(1);
-                this.name = rs.getString(2);
-                //in case with ENUM was used valueOf method to parse string which was changed to uppercase
-                //and replace space to "_" that it can be used as ENUM
-                this.continent = Continent.valueOf(rs.getString(3).toUpperCase().replace(" ", "_"));
-                this.surfaceArea = rs.getFloat(4);
-                this.headOfState = rs.getString(5);
+                    rs.next();
+                    this.id = rs.getString(1);
+                    this.name = rs.getString(2);
+                    //in case with ENUM was used valueOf method to parse string which was changed to uppercase
+                    //and replace space to "_" that it can be used as ENUM
+                    this.continent = Continent.valueOf(rs.getString(3).toUpperCase().replace(" ", "_"));
+                    this.surfaceArea = rs.getFloat(4);
+                    this.headOfState = rs.getString(5);
 
 
-                //Declaring new BuilderCountry inner class use constructor to pass all values
-                Country.BuilderCountry builder =
-                        new Country.BuilderCountry(id, name, continent).setSutfaceArea(surfaceArea).setHeadOfState(headOfState);
+                    //Declaring new BuilderCountry inner class use constructor to pass all values
+                    Country.BuilderCountry builder =
+                            new Country.BuilderCountry(id, name, continent).setSutfaceArea(surfaceArea).setHeadOfState(headOfState);
 
-                        this.cn = builder.build();
+                    this.cn = builder.build();
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -151,7 +151,6 @@ public class MySQLCountryDAO implements CountryDAO {
         //Query for insert statement and with value
         String query = "INSERT INTO country (code, name, continent, surfaceArea, headOfState) " +
                 "VALUES ('" + id + "', '" + name + "', '" + continent + "', '" + surfaceArea + "', '" + headOfState + "');";
-        System.out.println(query);
         return db.insert(query);
 
 

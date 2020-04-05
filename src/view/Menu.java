@@ -10,6 +10,7 @@ public class Menu {
      * */
 
         private ArrayList menu;
+        private ArrayList enumList;
 
         public Menu() {
 
@@ -22,8 +23,37 @@ public class Menu {
             menu.add("3. Find a country by name");
             menu.add("4. Save a new country");
             menu.add("5. Exit");
+
+            enumListMenu();
         }
         public ArrayList getMenu() {
             return menu;
         }
+
+        //This method to list all options for user to chose for country
+        //will be used in continent method in Controller class
+        public void enumListMenu(){
+
+            enumList = new ArrayList<>();
+
+            enumList.add("1. Asia");
+            enumList.add("2. Europe");
+            enumList.add("3. North America");
+            enumList.add("4. Africa");
+            enumList.add("5. Oceania");
+            enumList.add("6. Antarctica");
+            enumList.add("7. South America");
+
+
+        }
+
+    public ArrayList getEnumList() {
+        return enumList;
+    }
+
+
 }
+
+
+
+

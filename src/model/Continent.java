@@ -12,7 +12,7 @@ public enum Continent {
     EUROPE("Europe"),
     NORTH_AMERICA("North America"),
     AFRICA("Africa"),
-    OCENIA("Ocenia"),
+    OCEANIA("Oceania"),
     ANTARCTICA("Antarctica"),
     SOUTH_AMERICA("South America");
 

@@ -53,7 +53,7 @@ public enum Connector {
          */
     public boolean insert(String query){
         try{
-            stmt.executeQuery(query);
+            stmt.execute(query);
             return true;
         }catch (SQLException e){
             e.printStackTrace();

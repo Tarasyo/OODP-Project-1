@@ -76,7 +76,7 @@ public class Country {
             this.id = id;
             this.name = name;
             this.continent = continent;
-            this.surfaceArea = 0;
+
 
         }
 

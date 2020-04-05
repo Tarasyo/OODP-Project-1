@@ -24,7 +24,7 @@ public class MySQLCountryDAO implements CountryDAO {
 
 
 
-    //This class will select all tuples from table and pass to the Array List of Country objects and returns it
+    //This method will select all tuples from table and pass to the Array List of Country objects and returns it
     @Override
     public ArrayList<Country> getCountries() {
         ArrayList<Country> countries = new ArrayList<Country>();
@@ -53,8 +53,6 @@ public class MySQLCountryDAO implements CountryDAO {
                 countries.add(builder.build());
             }
 
-            db.closeDB();
-
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -63,9 +61,9 @@ public class MySQLCountryDAO implements CountryDAO {
         return countries;
     }
 
-    //this class looks for the tuple that have code same sa wos passed to the class
+    //this method looks for the tuple that have code same sa wos passed to the class
     //return will be just one country object as the code of country is original attribute
-    //and code dont have duplicates 
+    //and code dont have duplicates
     @Override
     public Country findCountryById(String code) {
 
@@ -91,7 +89,6 @@ public class MySQLCountryDAO implements CountryDAO {
                         new Country.BuilderCountry(id, name, continent).setSutfaceArea(surfaceArea).setHeadOfState(headOfState);
 
                         this.cn = builder.build();
-            db.closeDB();
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -101,7 +98,7 @@ public class MySQLCountryDAO implements CountryDAO {
         return cn;
     }
 
-    //This class will select all countries with the name that will be pass as a string
+    //This method will select all countries with the name that will be pass as a string
     //The structure an operations are the same like getCoutrys class just with different query
     @Override
     public ArrayList<Country> findCountryByName(String name) {
@@ -131,7 +128,6 @@ public class MySQLCountryDAO implements CountryDAO {
                 countries.add(builder.build());
             }
 
-            db.closeDB();
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -141,8 +137,23 @@ public class MySQLCountryDAO implements CountryDAO {
         return countries;
     }
 
+    //This method add new country to the DB returns true or false depending if the insert was successful 
     @Override
     public boolean addCountry(Country country) {
-        return false;
+
+        //All variables are initialised from country object that passed to the method by getters
+        this.id = country.getId();
+        this.name = country.getName();
+        this.continent = country.getContinent();
+        this.surfaceArea = country.getSurfaceArea();
+        this.headOfState = country.getHeadOfState();
+
+        //Query for insert statement and with value
+        String query = "INSERT INTO country (code, name, continent, surfaceArea, headOfState) " +
+                "VALUES ('" + id + "', '" + name + "', '" + continent + "', '" + surfaceArea + "', '" + headOfState + "');";
+        System.out.println(query);
+        return db.insert(query);
+
+
     }
 }

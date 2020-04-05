@@ -8,5 +8,6 @@ public interface CountryDAO {
     public Country findCountryById(String code);
     public ArrayList<Country> findCountryByName(String name);
     public boolean addCountry(Country country);
+    public void close();
 
 }

@@ -13,11 +13,14 @@ public class Controller {
 
     private Menu menu;
     private CountryDAO db;
+    private Validator validator;
 
     public Controller(){
 
         menu = new Menu();
         db = new MySQLCountryDAO();
+        validator = new Validator();
+
 
         options();
 
@@ -36,10 +39,10 @@ public class Controller {
             listAllCountries();
                 break;
             case "2":
-
+            findByCode();
                 break;
             case "3":
-
+            findByName();
                 break;
             case "4":
 
@@ -54,13 +57,62 @@ public class Controller {
         }
     }
 
-
+    //Method that takes data from getCountries method and out prints the array with for-each loop
     public void listAllCountries(){
         ArrayList<Country> countrys = db.getCountries();
         for(Country c : countrys){
-      System.out.println(c);
+        System.out.println(c);
+    }
+        System.out.println("-----------------------------------------------------");
+        options();
+    }
+
+    //Method that checks the input from user
+    public void findByCode(){
+        Country con;
+        String input;
+        System.out.println("Please Enter Code of country it should have EXACTLY 3 symbols");
+        input = bufferR();
+        //it should be exactly 3 symbols if validation returns true call findCountryById method and look for this code
+        if(validator.checkCode(input)){
+            con = db.findCountryById(input);
+            //Check if from findCountryById method returns null that its will still throw an exception message and go back to menu
+            if(con == null){
+                System.out.println("There is no country with code like this");
+                options();
+            }else {
+                System.out.println(con);
+                System.out.println("-----------------------------------------------------");
+                options();
+            }
+        }else{
+            System.out.println("Please ENTER EXACTLY 3 symbols");
+            findByCode();
+        }
 
     }
+    public void findByName(){
+        ArrayList<Country> countrys = db.getCountries();
+        String input;
+        System.out.println("Please Enter Name of country");
+        input = bufferR();
+        countrys = db.findCountryByName(input);
+        if(countrys.isEmpty()){
+            System.out.println("There is no country with name like this");
+            options();
+        }else {
+            for (Country c : countrys) {
+                System.out.println(c);
+            }
+            System.out.println("-----------------------------------------------------");
+            options();
+        }
+    }
+
+    //method to close DB and exit from java machine
+    public void  exit(){
+        db.close();
+        System.exit(0);
     }
 
 

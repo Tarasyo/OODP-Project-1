@@ -156,4 +156,12 @@ public class MySQLCountryDAO implements CountryDAO {
 
 
     }
+
+
+    //this method just execute the closeDB method from connector
+    //I decided that it's will be bad practice to create instance of connector in controller
+    //and for safety just have method that do it in this class
+    public void close(){
+        db.closeDB();
+    }
 }

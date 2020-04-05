@@ -13,12 +13,15 @@ public class Main {
     CountryDAO db = new MySQLCountryDAO();
 
 
-    ArrayList<Country> countrys = db.findCountryByName("Brazil");
+    //ArrayList<Country> countrys = db.findCountryByName("Brazil");
+    Country cou = db.findCountryById("119");
+
+    System.out.println(cou);
 
 
-    for(Country c : countrys){
-      System.out.println(c);
-    }
+//    for(Country c : countrys){
+//      System.out.println(c);
+//    }
 
 
     }

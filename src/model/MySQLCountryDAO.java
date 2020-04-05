@@ -137,7 +137,7 @@ public class MySQLCountryDAO implements CountryDAO {
         return countries;
     }
 
-    //This method add new country to the DB returns true or false depending if the insert was successful 
+    //This method add new country to the DB returns true or false depending if the insert was successful
     @Override
     public boolean addCountry(Country country) {
 

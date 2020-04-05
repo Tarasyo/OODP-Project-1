@@ -1,3 +1,4 @@
+import controller.Controller;
 import db.Connector;
 import model.Continent;
 import model.Country;
@@ -11,7 +12,10 @@ public class Main {
 
   public static void main(String[] args) {
 
-    CountryDAO db = new MySQLCountryDAO();
+
+    Controller controller = new Controller();
+
+    //CountryDAO db = new MySQLCountryDAO();
 
 
     //ArrayList<Country> countrys = db.findCountryByName("Ukraine");

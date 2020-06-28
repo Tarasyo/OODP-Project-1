@@ -10,7 +10,7 @@ You have been provided with access to a real database server that contains only 
 * Retrieve records by country name
 * Retrieve records by country code
 * Add new records into the database
-##Specific Requirements
+## Specific Requirements
 * Required to implement the Data Access Object pattern, in combination with any other two creational patterns.
 * Have to create a simple CLI client program to test implementation of the patterns.
 The client program should not have any direct contact with the database and should

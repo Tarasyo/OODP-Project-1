@@ -1,4 +1,4 @@
-## Assignment Introduction
+## Project Introduction
 You have been provided with access to a real database server that contains only one table (country), and have been tasked to develop a Java program in charge of:
 * Retrieve all records stored in the database table
 * Retrieve records by country name

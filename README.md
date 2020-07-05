@@ -1,9 +1,3 @@
-# Project Title
-CCT College Dublin
-Object Orientation Design Patterns CA1.
-Strudent: Taras Boreyko
-Teacher: Amilcar Aponte
-
 ## Assignment Introduction
 You have been provided with access to a real database server that contains only one table (country), and have been tasked to develop a Java program in charge of:
 * Retrieve all records stored in the database table
